@@ -3,8 +3,13 @@ import { readFileSync } from "node:fs";
 
 const banks = readFileSync("./data/2025/day3.txt")
 	.toString()
-	.split("\r\n")
-	.map((row) => row.split("").map((val) => +val));
+	.split("\n")
+	.map((row) =>
+		row
+			.trim()
+			.split("")
+			.map((val) => +val)
+	);
 
 const findMaxDigit = (
 	bank: number[],
