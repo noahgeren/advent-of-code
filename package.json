@@ -3,15 +3,15 @@
 	"version": "1.0.0",
 	"description": "Solutions to advent of code.",
 	"main": "index.js",
-    "type": "module",
+	"type": "module",
 	"scripts": {
 		"start": "tsx index.ts",
 		"watch": "tsx watch --include \"./data/*/*.txt\" index.ts watch",
 		"format": "prettier . --write"
 	},
-    "imports": {
-        "#/*": "./*"
-    },
+	"imports": {
+		"#/*": "./*"
+	},
 	"author": "noahsgeren@gmail.com",
 	"license": "ISC",
 	"devDependencies": {
@@ -23,6 +23,7 @@
 	},
 	"dependencies": {
 		"bignumber.js": "^9.1.2",
+		"canvas": "^3.2.0",
 		"prompt-sync": "^4.2.0",
 		"tinyqueue": "^3.0.0"
 	}
