@@ -62,7 +62,7 @@ const findReachablePlots = (
 		edge = newEdge;
 	}
 	clear();
-	printMatrix(map, (coord) =>
+	printMatrix(map, "", (coord) =>
 		steppable.has(coord) || edge.has(coord) ? "O" : undefined
 	);
 	const result = BigNumber(steppable.size + edge.size);
