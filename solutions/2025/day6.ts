@@ -1,7 +1,7 @@
 import BigNumber from "bignumber.js";
-import { readFileSync } from "node:fs";
+import { readInputFile } from "#/utilities/general";
 
-const values = readFileSync("./data/2025/day6.txt").toString().split("\n");
+const values = readInputFile(2025, 6).toString().split("\n");
 const ops = values.splice(values.length - 1, 1)[0];
 
 const maxLength = values.reduce<number>((max, row) => {

@@ -1,6 +1,6 @@
-import { readFileSync } from "node:fs";
+import { readInputFile } from "#/utilities/general";
 
-let data = readFileSync("./data/2025/day1.txt")
+let data = readInputFile(2025, 1)
 	.toString()
 	.split("\n")
 	.map((row) => ({

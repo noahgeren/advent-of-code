@@ -1,9 +1,9 @@
 import { ONE, TWO, ZERO } from "#/utilities/constants";
 import { bitwiseXOR } from "#/utilities/general";
 import BigNumber from "bignumber.js";
-import { readFileSync } from "fs";
+import { readInputFile } from "#/utilities/general";
 
-const data = readFileSync("./data/2024/day17.txt").toString().split("\n");
+const data = readInputFile(2024, 17).toString().split("\n");
 
 const EIGHT = TWO.pow(3);
 const registers = {

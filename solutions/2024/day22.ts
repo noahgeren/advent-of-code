@@ -2,7 +2,7 @@ import { TWO, ZERO } from "#/utilities/constants";
 import { bitwiseXOR } from "#/utilities/general";
 import HashMap from "#/utilities/structures/HashMap";
 import BigNumber from "bignumber.js";
-import { readFileSync } from "fs";
+import { readInputFile } from "#/utilities/general";
 
 const ITERATIONS = 2000;
 const MODULUS = BigNumber("16777216");
@@ -10,7 +10,7 @@ const TEN = BigNumber(10);
 const THIRTY_TWO = TWO.pow(5);
 const SIXTY_FOUR = TWO.pow(6);
 const TWO_KIBI = TWO.pow(11);
-const secretNumbers = readFileSync("./data/2024/day22.txt")
+const secretNumbers = readInputFile(2024, 22)
 	.toString()
 	.split("\n")
 	.map((n) => BigNumber(n));

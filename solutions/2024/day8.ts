@@ -1,6 +1,6 @@
-import { readFileSync } from "fs";
+import { readInputFile } from "#/utilities/general";
 
-const data = readFileSync("./data/2024/day8.txt")
+const data = readInputFile(2024, 8)
 	.toString()
 	.split("\n")
 	.map((row) => row.split(""));

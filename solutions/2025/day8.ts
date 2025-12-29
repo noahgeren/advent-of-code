@@ -1,11 +1,11 @@
-import { readFileSync } from "node:fs";
+import { readInputFile } from "#/utilities/general";
 
 interface Vector3d {
 	x: number;
 	y: number;
 	z: number;
 }
-const data = readFileSync("./data/2025/day8.txt")
+const data = readInputFile(2025, 8)
 	.toString()
 	.split("\n")
 	.map<Vector3d>((row) => {

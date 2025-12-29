@@ -2,9 +2,9 @@ import { ZERO } from "#/utilities/constants";
 import { Vector2d } from "#/utilities/matrix";
 import BigNumber from "bignumber.js";
 import console from "console";
-import { readFileSync } from "fs";
+import { readInputFile } from "#/utilities/general";
 
-const blocks = readFileSync("./data/2024/day13.txt")
+const blocks = readInputFile(2024, 13)
 	.toString()
 	.split("\n\n")
 	.map((block) => {

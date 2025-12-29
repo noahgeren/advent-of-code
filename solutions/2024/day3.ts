@@ -1,8 +1,8 @@
 import { ZERO } from "#/utilities/constants";
 import { BigNumber } from "bignumber.js";
-import { readFileSync } from "node:fs";
+import { readInputFile } from "#/utilities/general";
 
-let data = readFileSync("./data/2024/day3.txt").toString();
+let data = readInputFile(2024, 3).toString();
 
 console.log(
 	[...data.matchAll(/mul\((\d+),(\d+)\)/g)]

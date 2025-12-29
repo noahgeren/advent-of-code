@@ -1,6 +1,6 @@
-import { readFileSync } from "fs";
+import { readInputFile } from "#/utilities/general";
 
-const data = readFileSync("./data/2024/day25.txt").toString().split("\n\n");
+const data = readInputFile(2024, 25).toString().split("\n\n");
 
 const height = data[0].split("\n").length;
 const locks: number[][] = [];

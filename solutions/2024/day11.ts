@@ -1,8 +1,8 @@
 import { ONE, ZERO } from "#/utilities/constants";
 import BigNumber from "bignumber.js";
-import { readFileSync } from "fs";
+import { readInputFile } from "#/utilities/general";
 
-let stones = readFileSync("./data/2024/day11.txt")
+let stones = readInputFile(2024, 11)
 	.toString()
 	.split(" ")
 	.map((n) => new BigNumber(n));

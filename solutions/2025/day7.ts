@@ -1,8 +1,8 @@
 import HashMap from "#/utilities/structures/HashMap";
 import BigNumber from "bignumber.js";
-import { readFileSync } from "node:fs";
+import { readInputFile } from "#/utilities/general";
 
-const data = readFileSync("./data/2025/day7.txt")
+const data = readInputFile(2025, 7)
 	.toString()
 	.split("\n")
 	.map((row) => row.split(""));

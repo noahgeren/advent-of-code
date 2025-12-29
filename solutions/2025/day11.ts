@@ -1,7 +1,7 @@
 import HashMap from "#/utilities/structures/HashMap";
-import { readFileSync } from "node:fs";
+import { readInputFile } from "#/utilities/general";
 
-const connections = readFileSync("./data/2025/day11.txt")
+const connections = readInputFile(2025, 11)
 	.toString()
 	.split("\n")
 	.reduce<Record<string, string[]>>((connections, row) => {

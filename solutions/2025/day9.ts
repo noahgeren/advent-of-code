@@ -1,9 +1,10 @@
 import { createCanvas } from "canvas";
-import { createWriteStream, readFileSync } from "node:fs";
+import { createWriteStream } from "node:fs";
 import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { readInputFile } from "#/utilities/general";
 
-const data = readFileSync("./data/2025/day9.txt")
+const data = readInputFile(2025, 9)
 	.toString()
 	.split("\n")
 	.map((row) => {

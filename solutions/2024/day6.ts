@@ -1,7 +1,7 @@
 // import {BigNumber} from "bignumber.js";
-import { readFileSync } from "fs";
+import { readInputFile } from "#/utilities/general";
 
-const data = readFileSync("./data/2024/day6.txt")
+const data = readInputFile(2024, 6)
 	.toString()
 	.split("\n")
 	.map((line) => line.split(""));

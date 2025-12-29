@@ -1,8 +1,8 @@
 import { Vector2d } from "#/utilities/matrix";
 import BigNumber from "bignumber.js";
-import { readFileSync } from "fs";
+import { readInputFile } from "#/utilities/general";
 
-const data = readFileSync("./data/2024/day15.txt").toString().split("\n\n");
+const data = readInputFile(2024, 15).toString().split("\n\n");
 const initialMap = data[0].split("\n").map((row) => row.split(""));
 const instructions = data[1].split(/\n|/g) as ("<" | ">" | "^" | "v")[];
 const DIRECTIONS = {

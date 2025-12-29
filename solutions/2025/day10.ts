@@ -1,8 +1,8 @@
 import { rref } from "#/utilities/matrix";
 import HashSet from "#/utilities/structures/HashSet";
-import { readFileSync } from "node:fs";
+import { readInputFile } from "#/utilities/general";
 
-const data = readFileSync("./data/2025/day10.txt")
+const data = readInputFile(2025, 10)
 	.toString()
 	.split("\n")
 	.map((row) => {
@@ -63,25 +63,44 @@ console.log(
 );
 
 const findFewestButtonPressedForJoltages = (machine: Machine): number => {
-	const augmentedMatrix: number[][] = machine.joltages.map((joltage, index) => {
-		return machine.schematics.map((schematic) => schematic.includes(index) ? 1 : 0 as number).concat([joltage]);	
-	});
+	const augmentedMatrix: number[][] = machine.joltages.map(
+		(joltage, index) => {
+			return machine.schematics
+				.map((schematic) =>
+					schematic.includes(index) ? 1 : (0 as number)
+				)
+				.concat([joltage]);
+		}
+	);
 
 	const rrefMatrix = rref(augmentedMatrix);
-	const freeVariableMaximumsAndFunctions = [...Array(machine.schematics.length).keys()].map((index) => {
-		const func = rrefMatrix.find((row) => row.findIndex((value) => value === 1) === index);
-		if(!func) {
-			return { max: Math.min(...machine.schematics[index].map((button) => machine.joltages[button])) };
+	const freeVariableMaximumsAndFunctions = [
+		...Array(machine.schematics.length).keys()
+	].map((index) => {
+		const func = rrefMatrix.find(
+			(row) => row.findIndex((value) => value === 1) === index
+		);
+		if (!func) {
+			return {
+				max: Math.min(
+					...machine.schematics[index].map(
+						(button) => machine.joltages[button]
+					)
+				)
+			};
 		}
 		return func;
 	});
 
-	const solution = findMinimumSolution(machine, freeVariableMaximumsAndFunctions);
+	const solution = findMinimumSolution(
+		machine,
+		freeVariableMaximumsAndFunctions
+	);
 
-	if(solution === Number.MAX_SAFE_INTEGER) {
+	if (solution === Number.MAX_SAFE_INTEGER) {
 		throw new Error("No solution found");
 	}
-	
+
 	return solution;
 };
 
@@ -89,22 +108,36 @@ interface FreeVariable {
 	max: number;
 	value?: number;
 }
-const findMinimumSolution = (machine: Machine, freeVariableMaximumsAndFunctions:  (FreeVariable | number[])[]): number => {
+const findMinimumSolution = (
+	machine: Machine,
+	freeVariableMaximumsAndFunctions: (FreeVariable | number[])[]
+): number => {
 	// Find first free variable
-	const freeVariable = freeVariableMaximumsAndFunctions.find((item) => !Array.isArray(item) && item.value === undefined) as FreeVariable | undefined;
-	if(!freeVariable) {
+	const freeVariable = freeVariableMaximumsAndFunctions.find(
+		(item) => !Array.isArray(item) && item.value === undefined
+	) as FreeVariable | undefined;
+	if (!freeVariable) {
 		const values = freeVariableMaximumsAndFunctions.map((item, index) => {
-			if(Array.isArray(item)) {
+			if (Array.isArray(item)) {
 				let functionValue = item[item.length - 1];
-				for(let i = index + 1; i < item.length - 1; i++) {
-					functionValue -= item[i] * ((freeVariableMaximumsAndFunctions[i] as FreeVariable).value ?? 0);
+				for (let i = index + 1; i < item.length - 1; i++) {
+					functionValue -=
+						item[i] *
+						((freeVariableMaximumsAndFunctions[i] as FreeVariable)
+							.value ?? 0);
 				}
 				return Math.round(functionValue);
 			}
 			return item.value!;
 		});
 
-		if(values.some(value => Math.round(value) < 0 || Math.abs(value - Math.round(value)) > 0.1)) {
+		if (
+			values.some(
+				(value) =>
+					Math.round(value) < 0 ||
+					Math.abs(value - Math.round(value)) > 0.1
+			)
+		) {
 			return Number.MAX_SAFE_INTEGER;
 		}
 
@@ -114,7 +147,12 @@ const findMinimumSolution = (machine: Machine, freeVariableMaximumsAndFunctions:
 				actualJoltages[button] += value;
 			});
 		});
-		if(actualJoltages.some((joltage, index) => Math.round(joltage) !== machine.joltages[index])) {
+		if (
+			actualJoltages.some(
+				(joltage, index) =>
+					Math.round(joltage) !== machine.joltages[index]
+			)
+		) {
 			return Number.MAX_SAFE_INTEGER;
 		}
 
@@ -122,16 +160,20 @@ const findMinimumSolution = (machine: Machine, freeVariableMaximumsAndFunctions:
 	}
 
 	let minimumSolution = Number.MAX_SAFE_INTEGER;
-	for(let value = 0; value <= freeVariable.max; value++) {
+	for (let value = 0; value <= freeVariable.max; value++) {
 		freeVariable.value = value;
-		minimumSolution = Math.min(minimumSolution, findMinimumSolution(machine, freeVariableMaximumsAndFunctions));
+		minimumSolution = Math.min(
+			minimumSolution,
+			findMinimumSolution(machine, freeVariableMaximumsAndFunctions)
+		);
 	}
 	freeVariable.value = undefined;
 
 	return minimumSolution;
 };
 
-console.log("Part 2:",
+console.log(
+	"Part 2:",
 	data.reduce<number>(
 		(buttonsPressed, machine) =>
 			buttonsPressed + findFewestButtonPressedForJoltages(machine),

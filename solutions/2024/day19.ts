@@ -1,8 +1,8 @@
 import { ONE, ZERO } from "#/utilities/constants";
 import BigNumber from "bignumber.js";
-import { readFileSync } from "fs";
+import { readInputFile } from "#/utilities/general";
 
-const patternsWanted = readFileSync("./data/2024/day19.txt")
+const patternsWanted = readInputFile(2024, 19)
 	.toString()
 	.split("\n")
 	.filter((str) => str.trim().length);

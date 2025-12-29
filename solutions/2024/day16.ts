@@ -2,10 +2,10 @@ import { ONE, ZERO } from "#/utilities/constants";
 import { Direction, moveDirection, Vector2d } from "#/utilities/matrix";
 import HashSet from "#/utilities/structures/HashSet";
 import BigNumber from "bignumber.js";
-import { readFileSync } from "fs";
+import { readInputFile } from "#/utilities/general";
 import TinyQueue from "tinyqueue";
 
-const map = readFileSync("./data/2024/day16.txt")
+const map = readInputFile(2024, 16)
 	.toString()
 	.split("\n")
 	.map((row) => row.split(""));

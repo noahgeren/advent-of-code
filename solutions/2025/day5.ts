@@ -1,7 +1,7 @@
 import BigNumber from "bignumber.js";
-import { readFileSync } from "fs";
+import { readInputFile } from "#/utilities/general";
 
-const data = readFileSync("./data/2025/day5.txt").toString().split("\n\n");
+const data = readInputFile(2025, 5).toString().split("\n\n");
 const freshIdRanges = data[0]
 	.split("\n")
 	.map(

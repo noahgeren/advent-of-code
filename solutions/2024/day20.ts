@@ -1,9 +1,9 @@
 import { DIRECTION_MAP, Vector2d } from "#/utilities/matrix";
 import HashSet from "#/utilities/structures/HashSet";
-import { readFileSync } from "fs";
+import { readInputFile } from "#/utilities/general";
 import TinyQueue from "tinyqueue";
 
-const map = readFileSync("./data/2024/day20.txt")
+const map = readInputFile(2024, 20)
 	.toString()
 	.split("\n")
 	.map((row) => row.split(""));
