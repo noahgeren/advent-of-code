@@ -22,8 +22,10 @@
 		"typescript": "^5.7.2"
 	},
 	"dependencies": {
+		"@types/lodash.clonedeep": "^4.5.9",
 		"bignumber.js": "^9.1.2",
 		"canvas": "^3.2.0",
+		"lodash.clonedeep": "^4.5.0",
 		"prompt-sync": "^4.2.0",
 		"tinyqueue": "^3.0.0"
 	}
