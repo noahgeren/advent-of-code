@@ -3,6 +3,12 @@ export interface Vector2d<T = number> {
 	y: T;
 }
 
+export interface Vector3d<T = number> {
+	x: T;
+	y: T;
+	z: T;
+}
+
 /**
  * Ordinally clockwise starting from UP=0
  */
@@ -66,7 +72,7 @@ export const printMatrix = <T>(
 };
 
 export const rref = (input: number[][]): number[][] => {
-	const matrix = input.map(row => [...row]); // Deep copy
+	const matrix = input.map((row) => [...row]); // Deep copy
 	const rowCount = matrix.length;
 	const colCount = matrix[0]?.length ?? 0;
 	let lead = 0;
@@ -116,6 +122,5 @@ export const rref = (input: number[][]): number[][] => {
 	}
 
 	// Remove trailing zero rows
-	return matrix.filter(row => row.some(cell => Math.abs(cell) > 1e-10));
+	return matrix.filter((row) => row.some((cell) => Math.abs(cell) > 1e-10));
 };
-
